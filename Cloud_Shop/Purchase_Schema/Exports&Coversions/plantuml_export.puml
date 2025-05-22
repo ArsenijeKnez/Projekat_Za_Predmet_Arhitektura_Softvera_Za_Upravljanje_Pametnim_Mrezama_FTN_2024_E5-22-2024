@@ -1,0 +1,86 @@
+
+@startuml
+class User {
+    +userId: int
+    +name: String
+    +email: String
+}
+
+class Product {
+    +productId: int
+    +name: String
+    +price: float
+}
+
+class Order {
+    +orderId: int
+    +orderDate: Date
+}
+
+class Payment {
+    +paymentId: int
+    +amount: float
+}
+
+class ShoppingCart {
+    +cartId: int
+}
+
+class Inventory {
+    +inventoryId: int
+    +quantity: int
+}
+
+class Shipping {
+    +shippingId: int
+    +address: String
+}
+
+class Review {
+    +reviewId: int
+    +rating: int
+}
+
+class Notification {
+    +notificationId: int
+    +message: String
+}
+
+class Discount {
+    +discountId: int
+    +percentage: float
+}
+
+enum OrderStatus {
+    PENDING
+    COMPLETED
+    CANCELLED
+}
+
+enum PaymentMethod {
+    CREDIT_CARD
+    PAYPAL
+    BANK_TRANSFER
+}
+
+enum UserRole {
+    ADMIN
+    CUSTOMER
+    GUEST
+}
+
+User "1" -- "0..*" Order : places >
+Order "1" -- "1" Payment : processes >
+Order "1" -- "0..*" Product : contains >
+ShoppingCart "1" -- "0..*" Product : holds >
+Product "1" -- "0..1" Inventory : manages >
+Order "1" -- "1" Shipping : ships >
+User "1" -- "0..*" Review : writes >
+Product "1" -- "0..*" Review : receives >
+User "1" -- "0..*" Notification : receives >
+Order "1" -- "0..1" Discount : applies >
+User "1" -- "1" UserRole : has >
+Order "1" -- "1" OrderStatus : status >
+Payment "1" -- "1" PaymentMethod : method >
+
+@enduml
