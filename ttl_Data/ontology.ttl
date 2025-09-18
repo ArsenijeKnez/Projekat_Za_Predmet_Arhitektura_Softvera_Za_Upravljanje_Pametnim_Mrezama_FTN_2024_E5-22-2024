@@ -1,0 +1,337 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix tto: <http://example.org/purchase/ontology#> .
+@prefix ttr: <http://example.org/purchase/resource#> .
+@prefix purchase: <http://iec.ch/TC57/purchase#> .
+
+# =====================================================
+# CLASSES
+# =====================================================
+
+tto:User
+	rdf:type rdfs:Class;
+	rdfs:label "User"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Product
+	rdf:type rdfs:Class;
+	rdfs:label "Product"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Order
+	rdf:type rdfs:Class;
+	rdfs:label "Order"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Payment
+	rdf:type rdfs:Class;
+	rdfs:label "Payment"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:ShoppingCart
+	rdf:type rdfs:Class;
+	rdfs:label "Shopping Cart"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Inventory
+	rdf:type rdfs:Class;
+	rdfs:label "Inventory"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Shipping
+	rdf:type rdfs:Class;
+	rdfs:label "Shipping"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Review
+	rdf:type rdfs:Class;
+	rdfs:label "Review"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Notification
+	rdf:type rdfs:Class;
+	rdfs:label "Notification"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:Discount
+	rdf:type rdfs:Class;
+	rdfs:label "Discount"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+# Enumerations
+tto:OrderStatus
+	rdf:type rdfs:Class;
+	rdfs:label "Order Status"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:PaymentMethod
+	rdf:type rdfs:Class;
+	rdfs:label "Payment Method"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:UserRole
+	rdf:type rdfs:Class;
+	rdfs:label "User Role"^^xsd:string;
+	rdfs:isDefinedBy tto: .
+
+# =====================================================
+# ENUM VALUES
+# =====================================================
+
+ttr:PENDING rdf:type tto:OrderStatus .
+ttr:COMPLETED rdf:type tto:OrderStatus .
+ttr:CANCELLED rdf:type tto:OrderStatus .
+
+ttr:CREDIT_CARD rdf:type tto:PaymentMethod .
+ttr:PAYPAL rdf:type tto:PaymentMethod .
+ttr:BANK_TRANSFER rdf:type tto:PaymentMethod .
+
+ttr:ADMIN rdf:type tto:UserRole .
+ttr:CUSTOMER rdf:type tto:UserRole .
+ttr:GUEST rdf:type tto:UserRole .
+
+# =====================================================
+# PROPERTIES
+# =====================================================
+
+# ---------- User ----------
+tto:userId
+	rdf:type rdf:Property;
+	rdfs:label "user ID"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:name
+	rdf:type rdf:Property;
+	rdfs:label "name"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range xsd:string;
+	rdfs:isDefinedBy tto: .
+
+tto:email
+	rdf:type rdf:Property;
+	rdfs:label "email"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range xsd:string;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Product ----------
+tto:productId
+	rdf:type rdf:Property;
+	rdfs:label "product ID"^^xsd:string;
+	rdfs:domain tto:Product;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:price
+	rdf:type rdf:Property;
+	rdfs:label "price"^^xsd:string;
+	rdfs:comment "Price in USD"^^xsd:string;
+	rdfs:domain tto:Product;
+	rdfs:range xsd:float;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Order ----------
+tto:orderId
+	rdf:type rdf:Property;
+	rdfs:label "order ID"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:orderDate
+	rdf:type rdf:Property;
+	rdfs:label "order date"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range xsd:date;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Payment ----------
+tto:paymentId
+	rdf:type rdf:Property;
+	rdfs:label "payment ID"^^xsd:string;
+	rdfs:domain tto:Payment;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:amount
+	rdf:type rdf:Property;
+	rdfs:label "amount"^^xsd:string;
+	rdfs:domain tto:Payment;
+	rdfs:range xsd:float;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Inventory ----------
+tto:inventoryId
+	rdf:type rdf:Property;
+	rdfs:label "inventory ID"^^xsd:string;
+	rdfs:domain tto:Inventory;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:quantity
+	rdf:type rdf:Property;
+	rdfs:label "quantity"^^xsd:string;
+	rdfs:domain tto:Inventory;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Shipping ----------
+tto:shippingId
+	rdf:type rdf:Property;
+	rdfs:label "shipping ID"^^xsd:string;
+	rdfs:domain tto:Shipping;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:address
+	rdf:type rdf:Property;
+	rdfs:label "address"^^xsd:string;
+	rdfs:domain tto:Shipping;
+	rdfs:range xsd:string;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Review ----------
+tto:reviewId
+	rdf:type rdf:Property;
+	rdfs:label "review ID"^^xsd:string;
+	rdfs:domain tto:Review;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:rating
+	rdf:type rdf:Property;
+	rdfs:label "rating"^^xsd:string;
+	rdfs:domain tto:Review;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Notification ----------
+tto:notificationId
+	rdf:type rdf:Property;
+	rdfs:label "notification ID"^^xsd:string;
+	rdfs:domain tto:Notification;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:message
+	rdf:type rdf:Property;
+	rdfs:label "message"^^xsd:string;
+	rdfs:domain tto:Notification;
+	rdfs:range xsd:string;
+	rdfs:isDefinedBy tto: .
+
+# ---------- Discount ----------
+tto:discountId
+	rdf:type rdf:Property;
+	rdfs:label "discount ID"^^xsd:string;
+	rdfs:domain tto:Discount;
+	rdfs:range xsd:int;
+	rdfs:isDefinedBy tto: .
+
+tto:percentage
+	rdf:type rdf:Property;
+	rdfs:label "discount percentage"^^xsd:string;
+	rdfs:domain tto:Discount;
+	rdfs:range xsd:float;
+	rdfs:isDefinedBy tto: .
+
+# =====================================================
+# OBJECT PROPERTIES (RELATIONSHIPS)
+# =====================================================
+
+tto:places
+	rdf:type rdf:Property;
+	rdfs:label "places"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range tto:Order;
+	rdfs:isDefinedBy tto: .
+
+tto:processes
+	rdf:type rdf:Property;
+	rdfs:label "processes"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range tto:Payment;
+	rdfs:isDefinedBy tto: .
+
+tto:contains
+	rdf:type rdf:Property;
+	rdfs:label "contains"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range tto:Product;
+	rdfs:isDefinedBy tto: .
+
+tto:holds
+	rdf:type rdf:Property;
+	rdfs:label "holds"^^xsd:string;
+	rdfs:domain tto:ShoppingCart;
+	rdfs:range tto:Product;
+	rdfs:isDefinedBy tto: .
+
+tto:manages
+	rdf:type rdf:Property;
+	rdfs:label "manages"^^xsd:string;
+	rdfs:domain tto:Product;
+	rdfs:range tto:Inventory;
+	rdfs:isDefinedBy tto: .
+
+tto:ships
+	rdf:type rdf:Property;
+	rdfs:label "ships"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range tto:Shipping;
+	rdfs:isDefinedBy tto: .
+
+tto:writes
+	rdf:type rdf:Property;
+	rdfs:label "writes review"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range tto:Review;
+	rdfs:isDefinedBy tto: .
+
+tto:receivesReview
+	rdf:type rdf:Property;
+	rdfs:label "receives review"^^xsd:string;
+	rdfs:domain tto:Product;
+	rdfs:range tto:Review;
+	rdfs:isDefinedBy tto: .
+
+tto:receivesNotification
+	rdf:type rdf:Property;
+	rdfs:label "receives notification"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range tto:Notification;
+	rdfs:isDefinedBy tto: .
+
+tto:applies
+	rdf:type rdf:Property;
+	rdfs:label "applies discount"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range tto:Discount;
+	rdfs:isDefinedBy tto: .
+
+tto:hasRole
+	rdf:type rdf:Property;
+	rdfs:label "has role"^^xsd:string;
+	rdfs:domain tto:User;
+	rdfs:range tto:UserRole;
+	rdfs:isDefinedBy tto: .
+
+tto:hasStatus
+	rdf:type rdf:Property;
+	rdfs:label "has status"^^xsd:string;
+	rdfs:domain tto:Order;
+	rdfs:range tto:OrderStatus;
+	rdfs:isDefinedBy tto: .
+
+tto:hasMethod
+	rdf:type rdf:Property;
+	rdfs:label "has payment method"^^xsd:string;
+	rdfs:domain tto:Payment;
+	rdfs:range tto:PaymentMethod;
+	rdfs:isDefinedBy tto: .

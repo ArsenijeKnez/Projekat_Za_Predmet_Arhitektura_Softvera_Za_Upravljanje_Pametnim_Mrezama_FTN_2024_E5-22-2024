@@ -1,0 +1,304 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbp: <http://dbpedia.org/property/> .
+@prefix tto: <http://example.org/purchase/ontology#> .
+@prefix ttr: <http://example.org/purchase/resource#> .
+@prefix purchase: <http://iec.ch/TC57/purchase#> .
+
+# =====================================================
+# KORISNICI
+# =====================================================
+
+ttr:Milan
+	rdf:type tto:User ;
+	tto:userId 1 ;
+	tto:name "Milan Petrović"^^xsd:string ;
+	tto:email "milan.petrovic@example.com"^^xsd:string ;
+	tto:hasRole ttr:CUSTOMER ;
+	tto:receivesNotification ttr:Obavestenje1 ;
+	tto:writes ttr:Recenzija1 ;
+	tto:places ttr:Porudzbina1 ;
+	.
+
+ttr:Ana
+	rdf:type tto:User ;
+	tto:userId 2 ;
+	tto:name "Ana Jovanović"^^xsd:string ;
+	tto:email "ana.jovanovic@example.com"^^xsd:string ;
+	tto:hasRole ttr:ADMIN ;
+	tto:receivesNotification ttr:Obavestenje2 ;
+	.
+
+ttr:Petar
+	rdf:type tto:User ;
+	tto:userId 3 ;
+	tto:name "Petar Nikolić"^^xsd:string ;
+	tto:email "petar.nikolic@example.com"^^xsd:string ;
+	tto:hasRole ttr:CUSTOMER ;
+	tto:places ttr:Porudzbina2 ;
+	tto:writes ttr:Recenzija2 ;
+	tto:receivesNotification ttr:Obavestenje3 ;
+	.
+
+ttr:Jelena
+	rdf:type tto:User ;
+	tto:userId 4 ;
+	tto:name "Jelena Marković"^^xsd:string ;
+	tto:email "jelena.markovic@example.com"^^xsd:string ;
+	tto:hasRole ttr:CUSTOMER ;
+	tto:places ttr:Porudzbina3 ;
+	tto:writes ttr:Recenzija3 ;
+	tto:receivesNotification ttr:Obavestenje4 ;
+	.
+
+# =====================================================
+# PROIZVODI
+# =====================================================
+
+ttr:Telefon
+	rdf:type tto:Product ;
+	tto:productId 101 ;
+	tto:price 699.99 ;
+	dbp:name "Pametni telefon Galaxy Z"^^xsd:string ;
+	.
+
+ttr:Slusalice
+	rdf:type tto:Product ;
+	tto:productId 102 ;
+	tto:price 129.99 ;
+	dbp:name "Bežične slušalice SoundMax"^^xsd:string ;
+	.
+
+ttr:Laptop
+	rdf:type tto:Product ;
+	tto:productId 103 ;
+	tto:price 1199.00 ;
+	dbp:name "Laptop UltraPro 15"^^xsd:string ;
+	.
+
+ttr:PametnaNarukvica
+	rdf:type tto:Product ;
+	tto:productId 104 ;
+	tto:price 89.99 ;
+	dbp:name "Pametna narukvica FitTrack Pro"^^xsd:string ;
+	.
+
+ttr:Televizor
+	rdf:type tto:Product ;
+	tto:productId 105 ;
+	tto:price 749.99 ;
+	dbp:name "Smart TV VisionPlus 55''"^^xsd:string ;
+	.
+
+ttr:Mis
+	rdf:type tto:Product ;
+	tto:productId 106 ;
+	tto:price 24.99 ;
+	dbp:name "Bežični miš ClickMaster"^^xsd:string ;
+	.
+
+# =====================================================
+# INVENTAR
+# =====================================================
+
+ttr:Inventar1
+	rdf:type tto:Inventory ;
+	tto:inventoryId 501 ;
+	tto:quantity 15 ;
+	tto:manages ttr:Telefon ;
+	.
+
+ttr:Inventar2
+	rdf:type tto:Inventory ;
+	tto:inventoryId 502 ;
+	tto:quantity 30 ;
+	tto:manages ttr:Slusalice ;
+	.
+
+ttr:Inventar3
+	rdf:type tto:Inventory ;
+	tto:inventoryId 503 ;
+	tto:quantity 10 ;
+	tto:manages ttr:Laptop ;
+	.
+
+ttr:Inventar4
+	rdf:type tto:Inventory ;
+	tto:inventoryId 504 ;
+	tto:quantity 25 ;
+	tto:manages ttr:PametnaNarukvica ;
+	.
+
+ttr:Inventar5
+	rdf:type tto:Inventory ;
+	tto:inventoryId 505 ;
+	tto:quantity 8 ;
+	tto:manages ttr:Televizor ;
+	.
+
+ttr:Inventar6
+	rdf:type tto:Inventory ;
+	tto:inventoryId 506 ;
+	tto:quantity 50 ;
+	tto:manages ttr:Mis ;
+	.
+
+# =====================================================
+# NARUDŽBINE
+# =====================================================
+
+ttr:Porudzbina1
+	rdf:type tto:Order ;
+	tto:orderId 201 ;
+	tto:orderDate "2025-10-25"^^xsd:date ;
+	tto:contains ttr:Telefon, ttr:Slusalice ;
+	tto:hasStatus ttr:COMPLETED ;
+	tto:processes ttr:Placanje1 ;
+	tto:ships ttr:Ispravka1 ;
+	tto:applies ttr:Popust1 ;
+	.
+
+ttr:Porudzbina2
+	rdf:type tto:Order ;
+	tto:orderId 202 ;
+	tto:orderDate "2025-10-20"^^xsd:date ;
+	tto:contains ttr:PametnaNarukvica, ttr:Mis ;
+	tto:hasStatus ttr:PROCESSING ;
+	tto:processes ttr:Placanje2 ;
+	tto:ships ttr:Ispravka2 ;
+	tto:applies ttr:Popust2 ;
+	.
+
+ttr:Porudzbina3
+	rdf:type tto:Order ;
+	tto:orderId 203 ;
+	tto:orderDate "2025-09-15"^^xsd:date ;
+	tto:contains ttr:Televizor ;
+	tto:hasStatus ttr:DELIVERED ;
+	tto:processes ttr:Placanje3 ;
+	tto:ships ttr:Ispravka3 ;
+	.
+
+
+# =====================================================
+# PLAĆANJE
+# =====================================================
+
+ttr:Placanje1
+	rdf:type tto:Payment ;
+	tto:paymentId 301 ;
+	tto:amount 829.98 ;
+	tto:hasMethod ttr:CREDIT_CARD ;
+	.
+
+ttr:Placanje2
+	rdf:type tto:Payment ;
+	tto:paymentId 302 ;
+	tto:amount 114.98 ;
+	tto:hasMethod ttr:PAYPAL ;
+	.
+
+ttr:Placanje3
+	rdf:type tto:Payment ;
+	tto:paymentId 303 ;
+	tto:amount 749.99 ;
+	tto:hasMethod ttr:BANK_TRANSFER ;
+	.
+
+
+# =====================================================
+# ISPORUKA
+# =====================================================
+
+ttr:Ispravka1
+	rdf:type tto:Shipping ;
+	tto:shippingId 401 ;
+	tto:address "Bulevar Oslobođenja 56, Novi Sad, Srbija"^^xsd:string ;
+	.
+
+ttr:Ispravka2
+	rdf:type tto:Shipping ;
+	tto:shippingId 402 ;
+	tto:address "Kralja Petra I 14, Beograd, Srbija"^^xsd:string ;
+	.
+
+ttr:Ispravka3
+	rdf:type tto:Shipping ;
+	tto:shippingId 403 ;
+	tto:address "Cara Lazara 7, Niš, Srbija"^^xsd:string ;
+	.
+
+# =====================================================
+# RECENZIJE
+# =====================================================
+
+ttr:Recenzija1
+	rdf:type tto:Review ;
+	tto:reviewId 601 ;
+	tto:rating 5 ;
+	dbp:name "Odličan telefon! Brz, elegantan i isplativ."^^xsd:string ;
+	tto:receivesReview ttr:Telefon ;
+	.
+
+ttr:Recenzija2
+	rdf:type tto:Review ;
+	tto:reviewId 602 ;
+	tto:rating 4 ;
+	dbp:name "Narukvica je odlična za praćenje aktivnosti, ali baterija traje kraće nego što sam očekivao."^^xsd:string ;
+	tto:receivesReview ttr:PametnaNarukvica ;
+	.
+
+ttr:Recenzija3
+	rdf:type tto:Review ;
+	tto:reviewId 603 ;
+	tto:rating 5 ;
+	dbp:name "Slika na televizoru je fantastična, lako povezivanje sa WiFi-jem!"^^xsd:string ;
+	tto:receivesReview ttr:Televizor ;
+	.
+
+# =====================================================
+# OBAVEŠTENJA
+# =====================================================
+
+ttr:Obavestenje1
+	rdf:type tto:Notification ;
+	tto:notificationId 701 ;
+	tto:message "Vaša porudžbina je uspešno obrađena i poslata!"^^xsd:string ;
+	.
+
+ttr:Obavestenje2
+	rdf:type tto:Notification ;
+	tto:notificationId 702 ;
+	tto:message "Novi korisnik se registrovao na sistem."^^xsd:string ;
+	.
+
+ttr:Obavestenje3
+	rdf:type tto:Notification ;
+	tto:notificationId 703 ;
+	tto:message "Vaša porudžbina je u fazi obrade."^^xsd:string ;
+	.
+
+ttr:Obavestenje4
+	rdf:type tto:Notification ;
+	tto:notificationId 704 ;
+	tto:message "Vaš televizor je uspešno isporučen!"^^xsd:string ;
+	.
+
+# =====================================================
+# POPUSTI
+# =====================================================
+
+ttr:Popust1
+	rdf:type tto:Discount ;
+	tto:discountId 801 ;
+	tto:percentage 10.0 ;
+	.
+	
+ttr:Popust2
+	rdf:type tto:Discount ;
+	tto:discountId 802 ;
+	tto:percentage 5.0 ;
+	.
