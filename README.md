@@ -1,10 +1,10 @@
-#Purchase Ontology
+# Purchase Ontology
 
 **Purchase Ontology** predstavlja semantički model za opisivanje procesa kupovine u e-trgovini.
 Zasniva se na RDF (Resource Description Framework) standardu i omogućava strukturisano, interoperabilno i semantički bogato predstavljanje informacija o korisnicima, proizvodima, porudžbinama, plaćanjima i isporukama.
 
 
-##Opis projekta
+## Opis projekta
 
 Ova ontologija modeluje osnovne entitete e-trgovine i njihove odnose:
 
@@ -19,7 +19,7 @@ Ova ontologija modeluje osnovne entitete e-trgovine i njihove odnose:
 
 Ontologija koristi prefikse poput `tto:` (taxonomy/ontology) i `ttr:` (taxonomy/resource) radi lakšeg organizovanja podataka.
 
-##Tehnologije
+## Tehnologije
 
 * **RDF / Turtle (TTL)** — standardni format za opis semantičkih podataka
 * **RDFS** — definisanje tipova, domena i odnosa između klasa
